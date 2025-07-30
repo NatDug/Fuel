@@ -4,15 +4,58 @@ import LoginPage from "./pages/LoginPage";
 import FuelOrderPage from "./pages/FuelOrderPage";
 import WalletPage from "./pages/WalletPage";
 import TrackOrderPage from "./pages/TrackOrderPage";
+import DemoPage from "./pages/DemoPage";
+
+// Driver Pages
+import DriverTrainingPage from "./pages/DriverTrainingPage";
+import DriverDeliveriesPage from "./pages/DriverDeliveriesPage";
+import DriverEarningsPage from "./pages/DriverEarningsPage";
+import DriverReferralsPage from "./pages/DriverReferralsPage";
+
+// Station Pages
+import StationDashboardPage from "./pages/StationDashboardPage";
+import StationInventoryPage from "./pages/StationInventoryPage";
+import StationOrdersPage from "./pages/StationOrdersPage";
+import StationReportsPage from "./pages/StationReportsPage";
+
+// Admin Pages
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AdminUserManagementPage from "./pages/AdminUserManagementPage";
+import AdminSystemSettingsPage from "./pages/AdminSystemSettingsPage";
 
 const App: React.FC = () => (
   <Router>
     <Routes>
+      {/* Demo Route */}
+      <Route path="/" element={<DemoPage />} />
+      
+      {/* Public Routes */}
       <Route path="/login" element={<LoginPage />} />
+      
+      {/* User Routes */}
       <Route path="/order" element={<FuelOrderPage />} />
       <Route path="/wallet" element={<WalletPage />} />
       <Route path="/track" element={<TrackOrderPage />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      
+      {/* Driver Routes */}
+      <Route path="/driver/training" element={<DriverTrainingPage />} />
+      <Route path="/driver/deliveries" element={<DriverDeliveriesPage />} />
+      <Route path="/driver/earnings" element={<DriverEarningsPage />} />
+      <Route path="/driver/referrals" element={<DriverReferralsPage />} />
+      
+      {/* Station Routes */}
+      <Route path="/station/dashboard" element={<StationDashboardPage />} />
+      <Route path="/station/inventory" element={<StationInventoryPage />} />
+      <Route path="/station/orders" element={<StationOrdersPage />} />
+      <Route path="/station/reports" element={<StationReportsPage />} />
+      
+      {/* Admin Routes */}
+      <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+      <Route path="/admin/users" element={<AdminUserManagementPage />} />
+      <Route path="/admin/settings" element={<AdminSystemSettingsPage />} />
+      
+      {/* Fallback redirect */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </Router>
 );
