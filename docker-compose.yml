@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: wefuel-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: wefuel123
+      MONGO_INITDB_DATABASE: wefuel
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+    networks:
+      - wefuel-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./wefuel-backend
+      dockerfile: Dockerfile
+    container_name: wefuel-backend
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: mongodb://admin:wefuel123@mongodb:27017/wefuel?authSource=admin
+      PORT: 4000
+      NODE_ENV: production
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+    networks:
+      - wefuel-network
+    volumes:
+      - ./wefuel-backend/logs:/app/logs
+
+  # Frontend
+  frontend:
+    build:
+      context: ./wefuel-platform
+      dockerfile: Dockerfile
+    container_name: wefuel-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    networks:
+      - wefuel-network
+    volumes:
+      - ./wefuel-platform/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  # Nginx Reverse Proxy (Alternative to frontend nginx)
+  nginx:
+    image: nginx:alpine
+    container_name: wefuel-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - wefuel-network
+
+networks:
+  wefuel-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local 
