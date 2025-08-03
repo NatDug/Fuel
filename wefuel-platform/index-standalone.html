@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeFuel Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        fuel: {
+                            50: '#fef7ee',
+                            100: '#fdedd6',
+                            200: '#fad7ac',
+                            300: '#f6bb77',
+                            400: '#f1943e',
+                            500: '#ed7518',
+                            600: '#de5a0e',
+                            700: '#b8440f',
+                            800: '#933614',
+                            900: '#762e14',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .btn-primary {
+            @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+        }
+        .btn-secondary {
+            @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+        }
+        .card {
+            @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+        }
+        .input-field {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="#" class="flex-shrink-0 flex items-center" onclick="showPage('demo')">
+                            <span class="text-2xl font-bold text-blue-600">WeFuel</span>
+                            <span class="ml-2 text-sm text-gray-500" id="userTypeLabel">(Platform Demo)</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8" id="navItems">
+                        <!-- Navigation items will be populated by JavaScript -->
+                    </div>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button class="btn-secondary" onclick="showPage('login')">Login</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="mainContent">
+            <!-- Demo Page (Default) -->
+            <div id="demoPage" class="page">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                            WeFuel Platform Demo
+                        </h1>
+                        <p class="text-xl text-gray-600">
+                            Experience the future of fuel delivery
+                        </p>
+                    </div>
+
+                    <!-- User Type Selection -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div class="card cursor-pointer hover:shadow-md transition-shadow" onclick="selectUserType('customer')">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">⛽</div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Customer</h3>
+                                <p class="text-gray-600 text-sm">Order fuel and track deliveries</p>
+                            </div>
+                        </div>
+                        <div class="card cursor-pointer hover:shadow-md transition-shadow" onclick="selectUserType('driver')">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">🚚</div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Driver</h3>
+                                <p class="text-gray-600 text-sm">Manage deliveries and earnings</p>
+                            </div>
+                        </div>
+                        <div class="card cursor-pointer hover:shadow-md transition-shadow" onclick="selectUserType('station')">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">🏪</div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Station</h3>
+                                <p class="text-gray-600 text-sm">Manage inventory and orders</p>
+                            </div>
+                        </div>
+                        <div class="card cursor-pointer hover:shadow-md transition-shadow" onclick="selectUserType('admin')">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4">👨‍💼</div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Admin</h3>
+                                <p class="text-gray-600 text-sm">Platform management and settings</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page Navigation -->
+                    <div id="pageNavigation" class="hidden">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Available Pages</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="pageGrid">
+                            <!-- Pages will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Page -->
+            <div id="loginPage" class="page hidden">
+                <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-md w-full space-y-8">
+                        <div>
+                            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                                Sign in to WeFuel
+                            </h2>
+                        </div>
+                        <form class="mt-8 space-y-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                                    <input id="email" name="email" type="email" required class="input-field mt-1">
+                                </div>
+                                <div>
+                                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                                    <input id="password" name="password" type="password" required class="input-field mt-1">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn-primary w-full">
+                                    Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Pages -->
+            <div id="orderPage" class="page hidden">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Fuel Order</h1>
+                    <div class="card">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Fuel Type</label>
+                                    <select class="input-field">
+                                        <option>Petrol 95</option>
+                                        <option>Petrol 93</option>
+                                        <option>Diesel</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Quantity (Liters)</label>
+                                    <input type="number" class="input-field" placeholder="50">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Address</label>
+                                <textarea class="input-field" rows="3" placeholder="Enter your delivery address"></textarea>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="btn-primary">Place Order</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="walletPage" class="page hidden">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Wallet</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Balance</h3>
+                            <div class="text-3xl font-bold text-green-600">R 1,250.00</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Total Spent</h3>
+                            <div class="text-3xl font-bold text-blue-600">R 3,450.00</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Orders</h3>
+                            <div class="text-3xl font-bold text-purple-600">12</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Driver Pages -->
+            <div id="driverTrainingPage" class="page hidden">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Driver Training</h1>
+                    <div class="space-y-6">
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Safety Training</h3>
+                            <p class="text-gray-600 mb-4">Complete safety training modules to ensure safe fuel delivery.</p>
+                            <button class="btn-primary">Start Training</button>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Customer Service</h3>
+                            <p class="text-gray-600 mb-4">Learn best practices for customer interaction and service delivery.</p>
+                            <button class="btn-primary">Start Training</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Station Pages -->
+            <div id="stationDashboardPage" class="page hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Station Dashboard</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Today's Sales</h3>
+                            <div class="text-2xl font-bold text-green-600">R 12,450</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Orders</h3>
+                            <div class="text-2xl font-bold text-blue-600">24</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Fuel Stock</h3>
+                            <div class="text-2xl font-bold text-orange-600">85%</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Active Drivers</h3>
+                            <div class="text-2xl font-bold text-purple-600">8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Pages -->
+            <div id="adminDashboardPage" class="page hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-8">Admin Dashboard</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Total Users</h3>
+                            <div class="text-2xl font-bold text-blue-600">1,234</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Active Orders</h3>
+                            <div class="text-2xl font-bold text-green-600">89</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Revenue</h3>
+                            <div class="text-2xl font-bold text-purple-600">R 45,670</div>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Stations</h3>
+                            <div class="text-2xl font-bold text-orange-600">15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentUserType = 'customer';
+        let currentPage = 'demo';
+
+        const userTypes = {
+            customer: {
+                label: 'Customer Portal',
+                pages: [
+                    { name: 'Fuel Order', id: 'order', description: 'Place fuel orders' },
+                    { name: 'Wallet', id: 'wallet', description: 'Manage your wallet' },
+                    { name: 'Track Order', id: 'track', description: 'Track your deliveries' }
+                ]
+            },
+            driver: {
+                label: 'Driver Portal',
+                pages: [
+                    { name: 'Training', id: 'driverTraining', description: 'Complete training modules' },
+                    { name: 'Deliveries', id: 'driverDeliveries', description: 'Manage your deliveries' },
+                    { name: 'Earnings', id: 'driverEarnings', description: 'View earnings and trips' },
+                    { name: 'Referrals', id: 'driverReferrals', description: 'Manage your referrals' }
+                ]
+            },
+            station: {
+                label: 'Station Portal',
+                pages: [
+                    { name: 'Dashboard', id: 'stationDashboard', description: 'View station overview' },
+                    { name: 'Inventory', id: 'stationInventory', description: 'Manage fuel inventory' },
+                    { name: 'Orders', id: 'stationOrders', description: 'Process customer orders' },
+                    { name: 'Reports', id: 'stationReports', description: 'View sales reports' }
+                ]
+            },
+            admin: {
+                label: 'Admin Portal',
+                pages: [
+                    { name: 'Dashboard', id: 'adminDashboard', description: 'Platform overview' },
+                    { name: 'User Management', id: 'adminUsers', description: 'Manage all users' },
+                    { name: 'System Settings', id: 'adminSettings', description: 'Configure platform' }
+                ]
+            }
+        };
+
+        function selectUserType(userType) {
+            currentUserType = userType;
+            updateNavigation();
+            showPageNavigation();
+        }
+
+        function updateNavigation() {
+            const userTypeLabel = document.getElementById('userTypeLabel');
+            const navItems = document.getElementById('navItems');
+            
+            userTypeLabel.textContent = `(${userTypes[currentUserType].label})`;
+            
+            navItems.innerHTML = userTypes[currentUserType].pages.map(page => 
+                `<a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50" onclick="showPage('${page.id}')">
+                    ${page.name}
+                </a>`
+            ).join('');
+        }
+
+        function showPageNavigation() {
+            const pageNavigation = document.getElementById('pageNavigation');
+            const pageGrid = document.getElementById('pageGrid');
+            
+            pageNavigation.classList.remove('hidden');
+            
+            pageGrid.innerHTML = userTypes[currentUserType].pages.map(page => 
+                `<div class="card cursor-pointer hover:shadow-md transition-shadow" onclick="showPage('${page.id}')">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">${page.name}</h3>
+                    <p class="text-gray-600 text-sm">${page.description}</p>
+                </div>`
+            ).join('');
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + 'Page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                currentPage = pageId;
+            } else {
+                // If page doesn't exist, show demo page
+                document.getElementById('demoPage').classList.remove('hidden');
+                currentPage = 'demo';
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html> 
