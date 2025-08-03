@@ -26,9 +26,9 @@ const LoginPage: React.FC = () => {
     setUserData(prev => ({ ...prev, phoneNumber }));
     setCurrentStep('complete');
     
-    // Redirect to main app after successful verification
+    // Redirect to main menu after successful verification
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/main-menu";
     }, 1500);
   };
 

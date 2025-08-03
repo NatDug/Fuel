@@ -726,6 +726,142 @@
           color: #667eea;
           font-weight: 600;
         }
+
+        /* Main Menu Styles */
+        .main-menu-container {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .main-menu-wrapper {
+          position: relative;
+          width: 414px;
+          height: 896px;
+          max-width: 100%;
+          max-height: 100vh;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .main-menu-background {
+          position: absolute;
+          width: 414px;
+          height: 896px;
+          left: 0px;
+          top: 0px;
+          background: url('data:image/svg+xml,<svg width="414" height="896" viewBox="0 0 414 896" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mainMenuGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:1" /><stop offset="50%" style="stop-color:%23764ba2;stop-opacity:1" /><stop offset="100%" style="stop-color:%23f093fb;stop-opacity:1" /></linearGradient><radialGradient id="overlayGradient" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23000000;stop-opacity:0.2" /></radialGradient><pattern id="gridPattern" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="%23ffffff" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="414" height="896" fill="url(%23mainMenuGradient)"/><rect width="414" height="896" fill="url(%23overlayGradient)"/><rect width="414" height="896" fill="url(%23gridPattern)"/><circle cx="50" cy="150" r="30" fill="%23ffffff" opacity="0.1"/><circle cx="364" cy="200" r="25" fill="%23ffffff" opacity="0.08"/><circle cx="80" cy="700" r="40" fill="%23ffffff" opacity="0.06"/><circle cx="334" cy="750" r="35" fill="%23ffffff" opacity="0.1"/><g transform="translate(157, 300)" opacity="0.15"><rect x="0" y="0" width="100" height="200" rx="10" fill="%23ffffff"/><rect x="10" y="20" width="80" height="160" rx="5" fill="%23667eea"/><circle cx="50" cy="60" r="15" fill="%23ffffff"/><rect x="45" y="80" width="10" height="80" fill="%23ffffff"/><rect x="35" y="160" width="30" height="20" rx="5" fill="%23ffffff"/></g><path d="M 0 400 Q 100 350 200 400 T 414 400 L 414 500 Q 300 450 200 500 T 0 500 Z" fill="%23ffffff" opacity="0.05"/><path d="M 0 600 Q 150 550 250 600 T 414 600 L 414 700 Q 300 650 250 700 T 0 700 Z" fill="%23ffffff" opacity="0.03"/><g transform="translate(50, 100)" opacity="0.2"><circle cx="0" cy="0" r="8" fill="%23ffffff"/><circle cx="20" cy="10" r="6" fill="%23ffffff"/><circle cx="40" cy="5" r="10" fill="%23ffffff"/></g><g transform="translate(300, 800)" opacity="0.15"><circle cx="0" cy="0" r="12" fill="%23ffffff"/><circle cx="25" cy="15" r="8" fill="%23ffffff"/><circle cx="50" cy="8" r="15" fill="%23ffffff"/></g></svg>') center/cover;
+          z-index: 1;
+        }
+
+        .main-menu-content {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 20px;
+          color: white;
+        }
+
+        .menu-header {
+          text-align: center;
+          margin-bottom: 60px;
+        }
+
+        .menu-title {
+          font-size: 48px;
+          font-weight: bold;
+          margin: 0 0 10px 0;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-subtitle {
+          font-size: 18px;
+          margin: 0;
+          opacity: 0.9;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-options {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
+          max-width: 280px;
+        }
+
+        .menu-option {
+          background: rgba(255, 255, 255, 0.2);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 15px;
+          padding: 20px;
+          font-size: 18px;
+          font-weight: 600;
+          color: white;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .menu-option:hover {
+          background: rgba(255, 255, 255, 0.3);
+          border-color: rgba(255, 255, 255, 0.5);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-option:active {
+          transform: translateY(0);
+        }
+
+        /* Responsive adjustments for main menu */
+        @media (max-width: 480px) {
+          .main-menu-wrapper {
+            width: 100%;
+            height: 100vh;
+            border-radius: 0;
+            box-shadow: none;
+          }
+          
+          .main-menu-background {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+          .main-menu-wrapper {
+            width: 480px;
+            height: 800px;
+          }
+          
+          .main-menu-background {
+            width: 480px;
+            height: 800px;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .main-menu-wrapper {
+            width: 414px;
+            height: 896px;
+          }
+          
+          .main-menu-background {
+            width: 414px;
+            height: 896px;
+          }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -1007,6 +1143,48 @@
                             <p class="completion-redirect">
                                 Redirecting to dashboard...
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Menu Page -->
+            <div id="mainMenuPage" class="page hidden">
+                <div class="main-menu-container">
+                    <div class="main-menu-wrapper">
+                        <div class="main-menu-background"></div>
+                        <div class="main-menu-content">
+                            <div class="menu-header">
+                                <h1 class="menu-title">WeFuel</h1>
+                                <p class="menu-subtitle">Your Fuel Delivery Partner</p>
+                            </div>
+                            
+                            <div class="menu-options">
+                                <button 
+                                    class="menu-option"
+                                    onclick="navigateToPage('fuelOrderPage')"
+                                >
+                                    Order Fuel
+                                </button>
+                                <button 
+                                    class="menu-option"
+                                    onclick="navigateToPage('trackOrderPage')"
+                                >
+                                    Track Order
+                                </button>
+                                <button 
+                                    class="menu-option"
+                                    onclick="navigateToPage('walletPage')"
+                                >
+                                    Wallet
+                                </button>
+                                <button 
+                                    class="menu-option"
+                                    onclick="navigateToPage('profilePage')"
+                                >
+                                    Profile
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1335,6 +1513,11 @@
                 document.getElementById('demoPage').classList.remove('hidden');
                 currentPage = 'demo';
             }
+            
+            // Update navigation if main menu is shown
+            if (pageId === 'mainMenu') {
+                updateNavigation();
+            }
         }
 
         // Login/Signup functionality
@@ -1604,9 +1787,9 @@
                         <p><strong>Email:</strong> ${userData.email || 'N/A'}</p>
                         <p><strong>Phone:</strong> ${userData.phoneNumber || 'N/A'}</p>
                     `;
-                    // Redirect after 2 seconds
+                    // Redirect to main menu after 2 seconds
                     setTimeout(() => {
-                        showPage('demo');
+                        showPage('mainMenu');
                     }, 2000);
                     break;
             }
@@ -1662,6 +1845,24 @@
                 button.textContent = isLoginMode ? 'Sign In' : 'Create Account';
                 button.disabled = false;
             }, 1000);
+        }
+
+        // Main menu navigation function
+        function navigateToPage(pageId) {
+            // Map main menu options to existing pages
+            const pageMapping = {
+                'fuelOrderPage': 'order',
+                'trackOrderPage': 'track',
+                'walletPage': 'wallet',
+                'profilePage': 'demo' // For now, redirect to demo page
+            };
+            
+            const targetPage = pageMapping[pageId];
+            if (targetPage) {
+                showPage(targetPage);
+            } else {
+                showPage('demo'); // Fallback to demo page
+            }
         }
 
         // Initialize the app

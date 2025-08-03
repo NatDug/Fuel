@@ -1,0 +1,137 @@
+/* Main Menu Component Styles */
+.main-menu-container {
+  position: relative;
+  width: 414px;
+  height: 896px;
+  max-width: 100%;
+  max-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-menu-wrapper {
+  position: relative;
+  width: 414px;
+  height: 896px;
+  max-width: 100%;
+  max-height: 100vh;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.main-menu-background {
+  position: absolute;
+  width: 414px;
+  height: 896px;
+  left: 0px;
+  top: 0px;
+  background: url('/assets/main-menu-bg.svg') center/cover;
+  z-index: 1;
+}
+
+.main-menu-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: white;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.menu-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.menu-subtitle {
+  font-size: 18px;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.menu-option {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.menu-option:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.menu-option:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .main-menu-wrapper {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .main-menu-background {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .main-menu-wrapper {
+    width: 480px;
+    height: 800px;
+  }
+  
+  .main-menu-background {
+    width: 480px;
+    height: 800px;
+  }
+}
+
+@media (min-width: 769px) {
+  .main-menu-wrapper {
+    width: 414px;
+    height: 896px;
+  }
+  
+  .main-menu-background {
+    width: 414px;
+    height: 896px;
+  }
+} 

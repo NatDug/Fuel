@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import MainMenuPage from "./pages/MainMenuPage";
 import FuelOrderPage from "./pages/FuelOrderPage";
 import WalletPage from "./pages/WalletPage";
 import TrackOrderPage from "./pages/TrackOrderPage";
@@ -32,10 +33,13 @@ const App: React.FC = () => (
       {/* Public Routes */}
       <Route path="/login" element={<LoginPage />} />
       
+      {/* Main Menu Route */}
+      <Route path="/main-menu" element={<MainMenuPage />} />
+      
       {/* User Routes */}
-      <Route path="/order" element={<FuelOrderPage />} />
+      <Route path="/fuel-order" element={<FuelOrderPage />} />
       <Route path="/wallet" element={<WalletPage />} />
-      <Route path="/track" element={<TrackOrderPage />} />
+      <Route path="/track-order" element={<TrackOrderPage />} />
       
       {/* Driver Routes */}
       <Route path="/driver/training" element={<DriverTrainingPage />} />
