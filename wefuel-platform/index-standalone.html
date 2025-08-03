@@ -52,6 +52,210 @@
         .input-field {
             @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
         }
+
+        /* Login Component Styles */
+        .login-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-wrapper {
+            position: relative;
+            width: 414px;
+            height: 896px;
+            max-width: 100%;
+            max-height: 100vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .login-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            background: url('data:image/svg+xml,<svg width="414" height="896" viewBox="0 0 414 896" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:0.1" /></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23bgGradient)"/><rect width="100%" height="100%" fill="url(%23grid)"/><circle cx="100" cy="150" r="60" fill="%23667eea" opacity="0.05"/><circle cx="350" cy="300" r="80" fill="%23764ba2" opacity="0.05"/><circle cx="80" cy="600" r="40" fill="%23667eea" opacity="0.05"/><circle cx="320" cy="700" r="70" fill="%23764ba2" opacity="0.05"/><g transform="translate(200, 400)" opacity="0.1"><rect x="-15" y="-30" width="30" height="60" rx="5" fill="%23667eea"/><rect x="-10" y="-25" width="20" height="50" rx="3" fill="white"/><circle cx="0" cy="-10" r="8" fill="%23667eea"/><rect x="-5" y="10" width="10" height="15" fill="%23667eea"/></g></svg>') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .login-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 60px;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 16px;
+            color: #718096;
+            margin: 0;
+        }
+
+        .login-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-error {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #c53030;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-input {
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .login-button {
+            margin-top: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .login-switch-text {
+            font-size: 14px;
+            color: #718096;
+            margin: 0;
+        }
+
+        .login-switch-button {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            margin: 0;
+        }
+
+        .login-switch-button:hover {
+            color: #5a67d8;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 480px) {
+            .login-wrapper {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            .login-content {
+                padding: 20px;
+            }
+            
+            .login-header {
+                margin-top: 40px;
+                margin-bottom: 30px;
+            }
+            
+            .login-title {
+                font-size: 24px;
+            }
+            
+            .login-subtitle {
+                font-size: 14px;
+            }
+        }
+
+        /* Tablet responsive adjustments */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .login-wrapper {
+                width: 480px;
+                height: 800px;
+            }
+        }
+
+        /* Desktop responsive adjustments */
+        @media (min-width: 769px) {
+            .login-wrapper {
+                width: 414px;
+                height: 896px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -132,32 +336,109 @@
                 </div>
             </div>
 
-            <!-- Login Page -->
+            <!-- Login Page - Updated with new mobile-responsive design -->
             <div id="loginPage" class="page hidden">
-                <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                    <div class="max-w-md w-full space-y-8">
-                        <div>
-                            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                                Sign in to WeFuel
-                            </h2>
+                <div class="login-container">
+                    <div class="login-wrapper">
+                        <div class="login-background">
+                            <!-- Background image applied via CSS -->
                         </div>
-                        <form class="mt-8 space-y-6">
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                                    <input id="email" name="email" type="email" required class="input-field mt-1">
-                                </div>
-                                <div>
-                                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                                    <input id="password" name="password" type="password" required class="input-field mt-1">
-                                </div>
+                        
+                        <div class="login-content">
+                            <div class="login-header">
+                                <h1 class="login-title" id="loginTitle">
+                                    Welcome Back
+                                </h1>
+                                <p class="login-subtitle" id="loginSubtitle">
+                                    Sign in to your WeFuel account
+                                </p>
                             </div>
-                            <div>
-                                <button type="submit" class="btn-primary w-full">
-                                    Sign in
+                            
+                            <form class="login-form" id="loginForm" onsubmit="handleLoginSubmit(event)">
+                                <div id="loginError" class="login-error hidden">
+                                    <!-- Error messages will appear here -->
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">
+                                        Email address
+                                    </label>
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        required
+                                        class="form-input"
+                                        placeholder="Enter your email"
+                                    />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password" class="form-label">
+                                        Password
+                                    </label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        required
+                                        class="form-input"
+                                        placeholder="Enter your password"
+                                    />
+                                </div>
+                                
+                                <!-- Signup fields (hidden by default) -->
+                                <div id="signupFields" class="hidden">
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">
+                                            Phone number
+                                        </label>
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            class="form-input"
+                                            placeholder="Enter your phone number"
+                                        />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="card" class="form-label">
+                                            Payment card number
+                                        </label>
+                                        <input
+                                            id="card"
+                                            name="card"
+                                            type="text"
+                                            class="form-input"
+                                            placeholder="Enter your card number"
+                                        />
+                                    </div>
+                                </div>
+                                
+                                <button
+                                    type="submit"
+                                    class="login-button"
+                                    id="loginButton"
+                                >
+                                    Sign In
                                 </button>
+                            </form>
+                            
+                            <div class="login-footer">
+                                <p class="login-switch-text">
+                                    <span id="switchText">Don't have an account? </span>
+                                    <button
+                                        type="button"
+                                        onclick="toggleLoginMode()"
+                                        class="login-switch-button"
+                                        id="switchButton"
+                                    >
+                                        Sign up
+                                    </button>
+                                </p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -288,6 +569,7 @@
     <script>
         let currentUserType = 'customer';
         let currentPage = 'demo';
+        let isLoginMode = true; // true for login, false for signup
 
         const userTypes = {
             customer: {
@@ -377,9 +659,110 @@
             }
         }
 
+        // Login/Signup functionality
+        function toggleLoginMode() {
+            isLoginMode = !isLoginMode;
+            updateLoginUI();
+        }
+
+        function updateLoginUI() {
+            const title = document.getElementById('loginTitle');
+            const subtitle = document.getElementById('loginSubtitle');
+            const button = document.getElementById('loginButton');
+            const switchText = document.getElementById('switchText');
+            const switchButton = document.getElementById('switchButton');
+            const signupFields = document.getElementById('signupFields');
+            const errorDiv = document.getElementById('loginError');
+
+            // Clear any previous errors
+            errorDiv.classList.add('hidden');
+
+            if (isLoginMode) {
+                title.textContent = 'Welcome Back';
+                subtitle.textContent = 'Sign in to your WeFuel account';
+                button.textContent = 'Sign In';
+                switchText.textContent = "Don't have an account? ";
+                switchButton.textContent = 'Sign up';
+                signupFields.classList.add('hidden');
+                
+                // Remove required from signup fields
+                document.getElementById('phone').removeAttribute('required');
+                document.getElementById('card').removeAttribute('required');
+            } else {
+                title.textContent = 'Create Account';
+                subtitle.textContent = 'Join the WeFuel platform';
+                button.textContent = 'Create Account';
+                switchText.textContent = 'Already have an account? ';
+                switchButton.textContent = 'Sign in';
+                signupFields.classList.remove('hidden');
+                
+                // Add required to signup fields
+                document.getElementById('phone').setAttribute('required', 'required');
+                document.getElementById('card').setAttribute('required', 'required');
+            }
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone').value;
+            const card = document.getElementById('card').value;
+            const errorDiv = document.getElementById('loginError');
+            const button = document.getElementById('loginButton');
+
+            // Show loading state
+            button.textContent = 'Processing...';
+            button.disabled = true;
+            errorDiv.classList.add('hidden');
+
+            // Simulate API call
+            setTimeout(() => {
+                if (isLoginMode) {
+                    // Login logic
+                    if (email && password) {
+                        showSuccessMessage(isLoginMode ? 'Login successful!' : 'Account created successfully!');
+                        // Redirect to demo page after successful login
+                        setTimeout(() => {
+                            showPage('demo');
+                        }, 1500);
+                    } else {
+                        showErrorMessage('Please fill in all required fields.');
+                    }
+                } else {
+                    // Signup logic
+                    if (email && password && phone && card) {
+                        showSuccessMessage(isLoginMode ? 'Login successful!' : 'Account created successfully!');
+                        // Redirect to demo page after successful signup
+                        setTimeout(() => {
+                            showPage('demo');
+                        }, 1500);
+                    } else {
+                        showErrorMessage('Please fill in all required fields.');
+                    }
+                }
+
+                // Reset button
+                button.textContent = isLoginMode ? 'Sign In' : 'Create Account';
+                button.disabled = false;
+            }, 1000);
+        }
+
+        function showErrorMessage(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+
+        function showSuccessMessage(message) {
+            alert(message);
+        }
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
             updateNavigation();
+            updateLoginUI();
         });
     </script>
 </body>
