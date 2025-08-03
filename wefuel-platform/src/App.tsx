@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import SplashPage from "./pages/SplashPage";
 import LoginPage from "./pages/LoginPage";
 import MainMenuPage from "./pages/MainMenuPage";
 import FuelOrderPage from "./pages/FuelOrderPage";
@@ -27,8 +28,8 @@ import AdminSystemSettingsPage from "./pages/AdminSystemSettingsPage";
 const App: React.FC = () => (
   <Router>
     <Routes>
-      {/* Demo Route */}
-      <Route path="/" element={<DemoPage />} />
+      {/* Home Landing Page */}
+      <Route path="/" element={<SplashPage />} />
       
       {/* Public Routes */}
       <Route path="/login" element={<LoginPage />} />
