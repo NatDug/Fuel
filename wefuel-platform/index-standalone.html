@@ -249,12 +249,482 @@
             }
         }
 
-        /* Desktop responsive adjustments */
+                /* Desktop responsive adjustments */
         @media (min-width: 769px) {
-            .login-wrapper {
-                width: 414px;
-                height: 896px;
-            }
+          .login-wrapper {
+            width: 414px;
+            height: 896px;
+          }
+        }
+
+        /* Splash Screen Styles */
+        .splash-container {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          overflow: hidden;
+        }
+
+        .splash-wrapper {
+          position: relative;
+          width: 414px;
+          height: 896px;
+          max-width: 100%;
+          max-height: 100vh;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .splash-background {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: 
+            radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          opacity: 0.1;
+          z-index: 1;
+        }
+
+        .splash-content {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 30px;
+          background: rgba(255, 255, 255, 0.95);
+        }
+
+        .splash-logo {
+          text-align: center;
+          margin-bottom: 60px;
+        }
+
+        .logo-icon {
+          margin-bottom: 20px;
+        }
+
+        .splash-title {
+          font-size: 36px;
+          font-weight: 800;
+          color: #1a202c;
+          margin: 0 0 8px 0;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .splash-subtitle {
+          font-size: 18px;
+          color: #718096;
+          margin: 0;
+          font-weight: 500;
+        }
+
+        .splash-loading {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .loading-spinner {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 20px;
+        }
+
+        .spinner-ring {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border: 3px solid transparent;
+          border-top: 3px solid #667eea;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        .spinner-ring:nth-child(2) {
+          width: 80%;
+          height: 80%;
+          top: 10%;
+          left: 10%;
+          border-top-color: #764ba2;
+          animation-delay: -0.3s;
+        }
+
+        .spinner-ring:nth-child(3) {
+          width: 60%;
+          height: 60%;
+          top: 20%;
+          left: 20%;
+          border-top-color: #667eea;
+          animation-delay: -0.6s;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+          font-size: 16px;
+          color: #718096;
+          margin: 0;
+          font-weight: 500;
+        }
+
+        .splash-progress {
+          width: 100%;
+          margin-bottom: 60px;
+        }
+
+        .progress-bar {
+          width: 100%;
+          height: 6px;
+          background: #e2e8f0;
+          border-radius: 3px;
+          overflow: hidden;
+          margin-bottom: 12px;
+        }
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 3px;
+          transition: width 0.3s ease;
+        }
+
+        .progress-text {
+          text-align: center;
+          font-size: 14px;
+          color: #718096;
+          margin: 0;
+          font-weight: 600;
+        }
+
+        .splash-features {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          width: 100%;
+        }
+
+        .feature-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 16px;
+          background: rgba(102, 126, 234, 0.05);
+          border-radius: 12px;
+          border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-icon {
+          font-size: 20px;
+          width: 24px;
+          text-align: center;
+        }
+
+        .feature-text {
+          font-size: 14px;
+          color: #2d3748;
+          font-weight: 500;
+        }
+
+        /* Phone Verification Styles */
+        .phone-verification-container {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .phone-verification-wrapper {
+          position: relative;
+          width: 414px;
+          height: 896px;
+          max-width: 100%;
+          max-height: 100vh;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .phone-verification-background {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0px;
+          top: 0px;
+          background: url('data:image/svg+xml,<svg width="414" height="896" viewBox="0 0 414 896" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:0.1" /></linearGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23bgGradient)"/><rect width="100%" height="100%" fill="url(%23grid)"/><circle cx="100" cy="150" r="60" fill="%23667eea" opacity="0.05"/><circle cx="350" cy="300" r="80" fill="%23764ba2" opacity="0.05"/><circle cx="80" cy="600" r="40" fill="%23667eea" opacity="0.05"/><circle cx="320" cy="700" r="70" fill="%23764ba2" opacity="0.05"/><g transform="translate(200, 400)" opacity="0.1"><rect x="-15" y="-30" width="30" height="60" rx="5" fill="%23667eea"/><rect x="-10" y="-25" width="20" height="50" rx="3" fill="white"/><circle cx="0" cy="-10" r="8" fill="%23667eea"/><rect x="-5" y="10" width="10" height="15" fill="%23667eea"/></g></svg>') center/cover;
+          opacity: 0.3;
+          z-index: 1;
+        }
+
+        .phone-verification-content {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 40px 30px;
+          background: rgba(255, 255, 255, 0.95);
+        }
+
+        .verification-header {
+          margin-bottom: 40px;
+        }
+
+        .back-button {
+          background: none;
+          border: none;
+          color: #667eea;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          padding: 0;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .back-button:hover {
+          color: #5a67d8;
+        }
+
+        .verification-title {
+          font-size: 28px;
+          font-weight: 700;
+          color: #1a202c;
+          margin: 0 0 8px 0;
+        }
+
+        .verification-subtitle {
+          font-size: 16px;
+          color: #718096;
+          margin: 0;
+        }
+
+        .verification-form {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .verification-error {
+          background: #fed7d7;
+          border: 1px solid #feb2b2;
+          color: #c53030;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+
+        .phone-input-wrapper {
+          display: flex;
+          align-items: center;
+          border: 2px solid #e2e8f0;
+          border-radius: 12px;
+          background: white;
+          overflow: hidden;
+        }
+
+        .country-code {
+          padding: 16px 12px;
+          background: #f7fafc;
+          color: #4a5568;
+          font-weight: 600;
+          border-right: 1px solid #e2e8f0;
+        }
+
+        .phone-input {
+          flex: 1;
+          padding: 16px;
+          border: none;
+          font-size: 16px;
+          outline: none;
+          background: transparent;
+        }
+
+        .phone-input:focus {
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .code-input {
+          padding: 16px;
+          border: 2px solid #e2e8f0;
+          border-radius: 12px;
+          font-size: 18px;
+          text-align: center;
+          letter-spacing: 4px;
+          transition: all 0.2s;
+          background: white;
+        }
+
+        .code-input:focus {
+          outline: none;
+          border-color: #667eea;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .verification-button {
+          margin-top: 20px;
+          padding: 16px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          border: none;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .verification-button:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .verification-button:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        .resend-section {
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .resend-text {
+          font-size: 14px;
+          color: #718096;
+          margin: 0 0 8px 0;
+        }
+
+        .resend-button {
+          background: none;
+          border: none;
+          color: #667eea;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: underline;
+          padding: 0;
+          font-size: 14px;
+        }
+
+        .resend-button:hover:not(:disabled) {
+          color: #5a67d8;
+        }
+
+        .resend-button:disabled {
+          color: #a0aec0;
+          cursor: not-allowed;
+          text-decoration: none;
+        }
+
+        .verification-footer {
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .footer-text {
+          font-size: 12px;
+          color: #a0aec0;
+          margin: 0;
+          line-height: 1.4;
+        }
+
+        /* Completion Page Styles */
+        .completion-container {
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .completion-wrapper {
+          position: relative;
+          width: 414px;
+          height: 896px;
+          max-width: 100%;
+          max-height: 100vh;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .completion-content {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 30px;
+          background: rgba(255, 255, 255, 0.95);
+          text-align: center;
+        }
+
+        .completion-icon {
+          font-size: 80px;
+          margin-bottom: 30px;
+        }
+
+        .completion-title {
+          font-size: 28px;
+          font-weight: 700;
+          color: #1a202c;
+          margin: 0 0 16px 0;
+        }
+
+        .completion-subtitle {
+          font-size: 16px;
+          color: #718096;
+          margin: 0 0 30px 0;
+        }
+
+        .completion-details {
+          background: #f7fafc;
+          border-radius: 12px;
+          padding: 20px;
+          margin-bottom: 30px;
+          width: 100%;
+        }
+
+        .completion-details p {
+          margin: 8px 0;
+          font-size: 14px;
+          color: #4a5568;
+        }
+
+        .completion-redirect {
+          font-size: 14px;
+          color: #667eea;
+          font-weight: 600;
         }
     </style>
 </head>
@@ -331,6 +801,212 @@
                         <h2 class="text-2xl font-bold text-gray-900 mb-6">Available Pages</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="pageGrid">
                             <!-- Pages will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Splash Screen -->
+            <div id="splashPage" class="page hidden">
+                <div class="splash-container">
+                    <div class="splash-wrapper">
+                        <div class="splash-background">
+                            <!-- Background gradient and patterns -->
+                        </div>
+                        
+                        <div class="splash-content">
+                            <!-- Logo and Brand -->
+                            <div class="splash-logo">
+                                <div class="logo-icon">
+                                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="80" height="80" rx="20" fill="url(#logoGradient)"/>
+                                        <g transform="translate(20, 15)">
+                                            <rect x="-10" y="-20" width="20" height="40" rx="3" fill="white"/>
+                                            <rect x="-7" y="-17" width="14" height="34" rx="2" fill="#667eea"/>
+                                            <circle cx="0" cy="-7" r="5" fill="white"/>
+                                            <rect x="-3" y="7" width="6" height="10" fill="white"/>
+                                        </g>
+                                        <defs>
+                                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <h1 class="splash-title">WeFuel</h1>
+                                <p class="splash-subtitle">Fuel Delivery Platform</p>
+                            </div>
+
+                            <!-- Loading Animation -->
+                            <div class="splash-loading">
+                                <div class="loading-spinner">
+                                    <div class="spinner-ring"></div>
+                                    <div class="spinner-ring"></div>
+                                    <div class="spinner-ring"></div>
+                                </div>
+                                <p class="loading-text">Loading...</p>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="splash-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="splashProgress"></div>
+                                </div>
+                                <p class="progress-text" id="splashProgressText">0%</p>
+                            </div>
+
+                            <!-- App Features Preview -->
+                            <div class="splash-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">⛽</span>
+                                    <span class="feature-text">Quick Fuel Orders</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🚚</span>
+                                    <span class="feature-text">Fast Delivery</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">💳</span>
+                                    <span class="feature-text">Secure Payments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone Verification Page -->
+            <div id="phoneVerificationPage" class="page hidden">
+                <div class="phone-verification-container">
+                    <div class="phone-verification-wrapper">
+                        <div class="phone-verification-background">
+                            <!-- Background image applied via CSS -->
+                        </div>
+                        
+                        <div class="phone-verification-content">
+                            <!-- Header -->
+                            <div class="verification-header">
+                                <button class="back-button" onclick="goBackToLogin()" type="button">
+                                    ← Back
+                                </button>
+                                <h1 class="verification-title" id="verificationTitle">
+                                    Enter Phone Number
+                                </h1>
+                                <p class="verification-subtitle" id="verificationSubtitle">
+                                    We'll send you a verification code
+                                </p>
+                            </div>
+                            
+                            <!-- Form -->
+                            <div class="verification-form">
+                                <div id="verificationError" class="verification-error hidden">
+                                    <!-- Error messages will appear here -->
+                                </div>
+                                
+                                <div id="phoneInputSection">
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">
+                                            Phone Number
+                                        </label>
+                                        <div class="phone-input-wrapper">
+                                            <span class="country-code">+1</span>
+                                            <input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                required
+                                                class="phone-input"
+                                                placeholder="(555) 123-4567"
+                                                maxlength="14"
+                                            />
+                                        </div>
+                                        <p class="input-hint">
+                                            We'll send a verification code to this number
+                                        </p>
+                                    </div>
+                                    
+                                    <button
+                                        type="button"
+                                        onclick="sendVerificationCode()"
+                                        class="verification-button"
+                                        id="sendCodeButton"
+                                    >
+                                        Send Verification Code
+                                    </button>
+                                </div>
+                                
+                                <div id="codeInputSection" class="hidden">
+                                    <div class="form-group">
+                                        <label for="code" class="form-label">
+                                            Verification Code
+                                        </label>
+                                        <input
+                                            id="code"
+                                            name="code"
+                                            type="text"
+                                            required
+                                            class="code-input"
+                                            placeholder="123456"
+                                            maxlength="6"
+                                        />
+                                        <p class="input-hint" id="codeHint">
+                                            Enter the 6-digit code sent to your phone
+                                        </p>
+                                    </div>
+                                    
+                                    <button
+                                        type="button"
+                                        onclick="verifyCode()"
+                                        class="verification-button"
+                                        id="verifyButton"
+                                    >
+                                        Verify Code
+                                    </button>
+                                    
+                                    <div class="resend-section">
+                                        <p class="resend-text">
+                                            Didn't receive the code?
+                                        </p>
+                                        <button
+                                            type="button"
+                                            onclick="resendCode()"
+                                            class="resend-button"
+                                            id="resendButton"
+                                        >
+                                            Resend Code
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Footer -->
+                            <div class="verification-footer">
+                                <p class="footer-text">
+                                    By continuing, you agree to our Terms of Service and Privacy Policy
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completion Page -->
+            <div id="completionPage" class="page hidden">
+                <div class="completion-container">
+                    <div class="completion-wrapper">
+                        <div class="completion-content">
+                            <div class="completion-icon">✅</div>
+                            <h1 class="completion-title">Welcome to WeFuel!</h1>
+                            <p class="completion-subtitle">
+                                Your account has been successfully verified.
+                            </p>
+                            <div class="completion-details" id="completionDetails">
+                                <!-- User details will be populated here -->
+                            </div>
+                            <p class="completion-redirect">
+                                Redirecting to dashboard...
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -570,6 +1246,8 @@
         let currentUserType = 'customer';
         let currentPage = 'demo';
         let isLoginMode = true; // true for login, false for signup
+        let currentLoginStep = 'splash'; // 'splash', 'login', 'phone-verification', 'complete'
+        let userData = {};
 
         const userTypes = {
             customer: {
@@ -759,10 +1437,242 @@
             alert(message);
         }
 
+        // Splash screen functionality
+        function startSplashScreen() {
+            let progress = 0;
+            const progressBar = document.getElementById('splashProgress');
+            const progressText = document.getElementById('splashProgressText');
+            
+            const interval = setInterval(() => {
+                progress += 2;
+                if (progressBar) progressBar.style.width = progress + '%';
+                if (progressText) progressText.textContent = Math.round(progress) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showLoginStep('login');
+                    }, 500);
+                }
+            }, 60); // 3 seconds total
+        }
+
+        // Phone verification functionality
+        let isCodeSent = false;
+        let countdown = 0;
+        let countdownTimer = null;
+
+        function formatPhoneNumber(value) {
+            const cleaned = value.replace(/\D/g, "");
+            
+            if (cleaned.length <= 3) {
+                return cleaned;
+            } else if (cleaned.length <= 6) {
+                return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+            } else {
+                return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+            }
+        }
+
+        function sendVerificationCode() {
+            const phoneInput = document.getElementById('phone');
+            const phoneNumber = phoneInput.value;
+            const button = document.getElementById('sendCodeButton');
+            const errorDiv = document.getElementById('verificationError');
+            
+            if (phoneNumber.replace(/\D/g, "").length !== 10) {
+                showVerificationError("Please enter a valid 10-digit phone number");
+                return;
+            }
+
+            button.textContent = "Sending...";
+            button.disabled = true;
+            hideVerificationError();
+
+            // Simulate API call
+            setTimeout(() => {
+                isCodeSent = true;
+                button.textContent = "Send Verification Code";
+                button.disabled = false;
+                countdown = 30;
+                startCountdown();
+                
+                // Switch to code input
+                document.getElementById('phoneInputSection').classList.add('hidden');
+                document.getElementById('codeInputSection').classList.remove('hidden');
+                document.getElementById('verificationTitle').textContent = "Verify Phone";
+                document.getElementById('verificationSubtitle').textContent = "We've sent a verification code to your phone";
+                document.getElementById('codeHint').textContent = `Enter the 6-digit code sent to ${phoneNumber}`;
+                
+                // Focus on code input
+                document.getElementById('code').focus();
+            }, 1000);
+        }
+
+        function verifyCode() {
+            const codeInput = document.getElementById('code');
+            const code = codeInput.value;
+            const button = document.getElementById('verifyButton');
+            
+            if (code.length !== 6) {
+                showVerificationError("Please enter the 6-digit verification code");
+                return;
+            }
+
+            button.textContent = "Verifying...";
+            button.disabled = true;
+            hideVerificationError();
+
+            // Simulate API call
+            setTimeout(() => {
+                button.textContent = "Verify Code";
+                button.disabled = false;
+                
+                // Store phone number in user data
+                const phoneInput = document.getElementById('phone');
+                userData.phoneNumber = phoneInput.value;
+                
+                showLoginStep('complete');
+            }, 1000);
+        }
+
+        function resendCode() {
+            if (countdown === 0) {
+                sendVerificationCode();
+            }
+        }
+
+        function startCountdown() {
+            const resendButton = document.getElementById('resendButton');
+            
+            if (countdownTimer) clearInterval(countdownTimer);
+            
+            countdownTimer = setInterval(() => {
+                countdown--;
+                if (countdown <= 0) {
+                    clearInterval(countdownTimer);
+                    resendButton.textContent = "Resend Code";
+                    resendButton.disabled = false;
+                } else {
+                    resendButton.textContent = `Resend in ${countdown}s`;
+                    resendButton.disabled = true;
+                }
+            }, 1000);
+        }
+
+        function showVerificationError(message) {
+            const errorDiv = document.getElementById('verificationError');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+
+        function hideVerificationError() {
+            const errorDiv = document.getElementById('verificationError');
+            errorDiv.classList.add('hidden');
+        }
+
+        function goBackToLogin() {
+            showLoginStep('login');
+        }
+
+        function showLoginStep(step) {
+            currentLoginStep = step;
+            
+            // Hide all login-related pages
+            document.getElementById('splashPage').classList.add('hidden');
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('phoneVerificationPage').classList.add('hidden');
+            document.getElementById('completionPage').classList.add('hidden');
+            
+            // Show the appropriate page
+            switch (step) {
+                case 'splash':
+                    document.getElementById('splashPage').classList.remove('hidden');
+                    startSplashScreen();
+                    break;
+                case 'login':
+                    document.getElementById('loginPage').classList.remove('hidden');
+                    break;
+                case 'phone-verification':
+                    document.getElementById('phoneVerificationPage').classList.remove('hidden');
+                    break;
+                case 'complete':
+                    document.getElementById('completionPage').classList.remove('hidden');
+                    // Populate completion details
+                    const detailsDiv = document.getElementById('completionDetails');
+                    detailsDiv.innerHTML = `
+                        <p><strong>Email:</strong> ${userData.email || 'N/A'}</p>
+                        <p><strong>Phone:</strong> ${userData.phoneNumber || 'N/A'}</p>
+                    `;
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        showPage('demo');
+                    }, 2000);
+                    break;
+            }
+        }
+
+        // Update login success handler
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone')?.value || '';
+            const card = document.getElementById('card')?.value || '';
+            const errorDiv = document.getElementById('loginError');
+            const button = document.getElementById('loginButton');
+
+            // Show loading state
+            button.textContent = 'Processing...';
+            button.disabled = true;
+            errorDiv.classList.add('hidden');
+
+            // Simulate API call
+            setTimeout(() => {
+                if (isLoginMode) {
+                    // Login logic
+                    if (email && password) {
+                        // Store user data
+                        userData = { userId: 'user123', email: email };
+                        showSuccessMessage('Login successful!');
+                        // Move to phone verification
+                        setTimeout(() => {
+                            showLoginStep('phone-verification');
+                        }, 1000);
+                    } else {
+                        showErrorMessage('Please fill in all required fields.');
+                    }
+                } else {
+                    // Signup logic
+                    if (email && password && phone && card) {
+                        // Store user data
+                        userData = { userId: 'user123', email: email };
+                        showSuccessMessage('Account created successfully!');
+                        // Move to phone verification
+                        setTimeout(() => {
+                            showLoginStep('phone-verification');
+                        }, 1000);
+                    } else {
+                        showErrorMessage('Please fill in all required fields.');
+                    }
+                }
+
+                // Reset button
+                button.textContent = isLoginMode ? 'Sign In' : 'Create Account';
+                button.disabled = false;
+            }, 1000);
+        }
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
             updateNavigation();
             updateLoginUI();
+            
+            // Start with splash screen when login page is accessed
+            if (window.location.pathname.includes('login') || currentPage === 'login') {
+                showLoginStep('splash');
+            }
         });
     </script>
 </body>
