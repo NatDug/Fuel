@@ -2,16 +2,13 @@ import React from "react";
 import AuthForm from "../components/AuthForm";
 
 const LoginPage: React.FC = () => {
-  const handleAuth = (data: any) => {
-    // TODO: Call your API endpoint here (login or signup)
-    console.log(data);
+  const handleLoginSuccess = (user: { userId: string; email: string }) => {
+    console.log("Login successful:", user);
+    // Redirect to dashboard or home page
+    window.location.href = "/";
   };
 
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <AuthForm onSubmit={handleAuth} />
-    </div>
-  );
+  return <AuthForm onSuccess={handleLoginSuccess} mode="login" />;
 };
 
 export default LoginPage;

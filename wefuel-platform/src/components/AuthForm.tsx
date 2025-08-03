@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { api, sessionStorage, handleApiError } from "../utils/api";
+import "../styles/login.css";
 
 interface AuthFormProps {
   onSuccess?: (user: { userId: string; email: string }) => void;
@@ -61,34 +62,31 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {isLogin ? 'Sign in to WeFuel' : 'Create your account'}
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-primary-600 hover:text-primary-500"
-            >
-              {isLogin ? 'Sign up' : 'Sign in'}
-            </button>
-          </p>
+    <div className="login-container">
+      <div className="login-wrapper">
+        <div className="login-background">
+          {/* Background image will be applied via CSS */}
         </div>
         
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-              {error}
-            </div>
-          )}
+        <div className="login-content">
+          <div className="login-header">
+            <h1 className="login-title">
+              {isLogin ? 'Welcome Back' : 'Create Account'}
+            </h1>
+            <p className="login-subtitle">
+              {isLogin ? 'Sign in to your WeFuel account' : 'Join the WeFuel platform'}
+            </p>
+          </div>
           
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <form className="login-form" onSubmit={handleSubmit}>
+            {error && (
+              <div className="login-error">
+                {error}
+              </div>
+            )}
+            
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">
                 Email address
               </label>
               <input
@@ -98,13 +96,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="input-field mt-1"
+                className="form-input"
                 placeholder="Enter your email"
               />
             </div>
             
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
@@ -114,15 +112,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
                 required
                 value={formData.password}
                 onChange={handleInputChange}
-                className="input-field mt-1"
+                className="form-input"
                 placeholder="Enter your password"
               />
             </div>
             
             {!isLogin && (
               <>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                <div className="form-group">
+                  <label htmlFor="phone" className="form-label">
                     Phone number
                   </label>
                   <input
@@ -132,13 +130,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="input-field mt-1"
+                    className="form-input"
                     placeholder="Enter your phone number"
                   />
                 </div>
                 
-                <div>
-                  <label htmlFor="card" className="block text-sm font-medium text-gray-700">
+                <div className="form-group">
+                  <label htmlFor="card" className="form-label">
                     Payment card number
                   </label>
                   <input
@@ -148,25 +146,38 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
                     required
                     value={formData.card}
                     onChange={handleInputChange}
-                    className="input-field mt-1"
+                    className="form-input"
                     placeholder="Enter your card number"
                   />
                 </div>
               </>
             )}
-          </div>
-          
-          <div>
+            
             <button
               type="submit"
               disabled={loading}
-              className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+              className="login-button"
             >
-              {loading ? 'Processing...' : (isLogin ? 'Sign in' : 'Create account')}
+              {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
             </button>
+          </form>
+          
+          <div className="login-footer">
+            <p className="login-switch-text">
+              {isLogin ? "Don't have an account? " : "Already have an account? "}
+              <button
+                type="button"
+                onClick={() => setIsLogin(!isLogin)}
+                className="login-switch-button"
+              >
+                {isLogin ? 'Sign up' : 'Sign in'}
+              </button>
+            </p>
           </div>
-        </form>
+        </div>
       </div>
+      
+      
     </div>
   );
 };
