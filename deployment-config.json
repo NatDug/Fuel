@@ -1,0 +1,142 @@
+{
+  "project": {
+    "name": "WeFuel Platform",
+    "version": "1.0.0",
+    "description": "Comprehensive fuel delivery platform with frontend and backend"
+  },
+  "frontend": {
+    "directory": "wefuel-platform",
+    "build": {
+      "command": "npm run build",
+      "output": "dist",
+      "port": 5173
+    },
+    "dependencies": {
+      "node": ">=16.0.0",
+      "npm": ">=8.0.0"
+    },
+    "environment": {
+      "development": {
+        "VITE_API_URL": "http://localhost:4000",
+        "VITE_API_BASE_URL": "http://localhost:4000/api",
+        "VITE_ENABLE_DEBUG_MODE": "true"
+      },
+      "production": {
+        "VITE_API_URL": "https://api.wefuel.com",
+        "VITE_API_BASE_URL": "https://api.wefuel.com/api",
+        "VITE_ENABLE_DEBUG_MODE": "false"
+      }
+    }
+  },
+  "backend": {
+    "directory": "wefuel-backend",
+    "start": {
+      "command": "npm start",
+      "dev_command": "npm run dev",
+      "port": 4000
+    },
+    "dependencies": {
+      "node": ">=16.0.0",
+      "npm": ">=8.0.0",
+      "mongodb": ">=4.0.0"
+    },
+    "environment": {
+      "development": {
+        "MONGODB_URI": "mongodb://localhost:27017/wefuel",
+        "PORT": "4000",
+        "NODE_ENV": "development"
+      },
+      "production": {
+        "MONGODB_URI": "mongodb://production-mongodb-uri",
+        "PORT": "4000",
+        "NODE_ENV": "production"
+      }
+    }
+  },
+  "database": {
+    "type": "mongodb",
+    "collections": [
+      "users",
+      "orders", 
+      "transactions"
+    ],
+    "indexes": [
+      {
+        "collection": "users",
+        "fields": ["email", "phone", "card"]
+      },
+      {
+        "collection": "orders", 
+        "fields": ["userId", "status", "createdAt"]
+      },
+      {
+        "collection": "transactions",
+        "fields": ["userId", "date"]
+      }
+    ]
+  },
+  "api": {
+    "base_url": "/api",
+    "endpoints": {
+      "auth": {
+        "login": "POST /api/login",
+        "signup": "POST /api/signup"
+      },
+      "orders": {
+        "place": "POST /api/order",
+        "track": "GET /api/track"
+      },
+      "wallet": {
+        "balance": "GET /api/wallet",
+        "withdraw": "POST /api/wallet/withdraw"
+      },
+      "health": {
+        "check": "GET /api/health"
+      }
+    },
+    "cors": {
+      "origin": ["http://localhost:5173", "https://wefuel.com"],
+      "credentials": true
+    }
+  },
+  "deployment": {
+    "docker": {
+      "frontend": {
+        "dockerfile": "wefuel-platform/Dockerfile",
+        "port": 80,
+        "build_args": ["NODE_ENV=production"]
+      },
+      "backend": {
+        "dockerfile": "wefuel-backend/Dockerfile", 
+        "port": 4000,
+        "environment": ["MONGODB_URI", "PORT", "NODE_ENV"]
+      }
+    },
+    "nginx": {
+      "config": "nginx.conf",
+      "frontend_port": 80,
+      "backend_port": 4000
+    },
+    "scripts": {
+      "build": "./build.sh",
+      "deploy": "./deploy.sh",
+      "test": "./test-commands.sh"
+    }
+  },
+  "monitoring": {
+    "health_checks": [
+      "http://localhost:4000/api/health",
+      "http://localhost:5173"
+    ],
+    "logs": {
+      "frontend": "wefuel-platform/logs",
+      "backend": "wefuel-backend/logs"
+    }
+  },
+  "security": {
+    "cors": true,
+    "rate_limiting": true,
+    "input_validation": true,
+    "authentication": "session-based"
+  }
+} 

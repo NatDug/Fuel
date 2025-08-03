@@ -176,5 +176,29 @@ app.post('/api/wallet/withdraw', async (req, res) => {
   }
 });
 
+// --- Health Check ---
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    service: 'WeFuel Backend API',
+    version: '1.0.0'
+  });
+});
+
+// --- Root endpoint ---
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'WeFuel Backend API',
+    version: '1.0.0',
+    endpoints: {
+      auth: '/api/login, /api/signup',
+      orders: '/api/order, /api/track',
+      wallet: '/api/wallet, /api/wallet/withdraw',
+      health: '/api/health'
+    }
+  });
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`WeFuel backend running on port ${PORT}`));

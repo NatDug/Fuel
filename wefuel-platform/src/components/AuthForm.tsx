@@ -1,93 +1,171 @@
 import React, { useState } from "react";
+import { api, sessionStorage, handleApiError } from "../utils/api";
 
-type Props = {
-  onSubmit: (data: any) => void;
-};
+interface AuthFormProps {
+  onSuccess?: (user: { userId: string; email: string }) => void;
+  mode?: 'login' | 'signup';
+}
 
-const AuthForm: React.FC<Props> = ({ onSubmit }) => {
-  const [isSignup, setIsSignup] = useState(false);
-  const [form, setForm] = useState({
-    email: "",
-    saId: "",
-    password: "",
-    ficaFile: null as File | null,
+const AuthForm: React.FC<AuthFormProps> = ({ onSuccess, mode = 'login' }) => {
+  const [isLogin, setIsLogin] = useState(mode === 'login');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    phone: '',
+    card: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, files } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      let response;
+      
+      if (isLogin) {
+        response = await api.login(formData.email, formData.password);
+      } else {
+        response = await api.signup(formData.email, formData.password, formData.phone, formData.card);
+      }
+
+      if (response.success && response.data) {
+        // Store user session
+        sessionStorage.setUser(response.data);
+        
+        // Call success callback
+        if (onSuccess) {
+          onSuccess(response.data);
+        }
+        
+        // Show success message
+        alert(isLogin ? 'Login successful!' : 'Account created successfully!');
+      } else {
+        setError(handleApiError(response.error || 'Authentication failed'));
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+      console.error('Auth error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(form);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-8 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        {isSignup ? "Sign Up" : "Login"}
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          className="w-full border p-2 rounded"
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="w-full border p-2 rounded"
-          type="text"
-          name="saId"
-          placeholder="South African ID Number"
-          value={form.saId}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="w-full border p-2 rounded"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        {isSignup && (
-          <div>
-            <label className="block mb-1 font-medium">FICA Document (PDF/JPG/PNG)</label>
-            <input
-              className="w-full border p-2 rounded"
-              type="file"
-              name="ficaFile"
-              accept=".pdf,.jpg,.jpeg,.png"
-              onChange={handleChange}
-              required
-            />
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            {isLogin ? 'Sign in to WeFuel' : 'Create your account'}
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <button
+              type="button"
+              onClick={() => setIsLogin(!isLogin)}
+              className="font-medium text-primary-600 hover:text-primary-500"
+            >
+              {isLogin ? 'Sign up' : 'Sign in'}
+            </button>
+          </p>
+        </div>
+        
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
+          
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={formData.email}
+                onChange={handleInputChange}
+                className="input-field mt-1"
+                placeholder="Enter your email"
+              />
+            </div>
+            
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={formData.password}
+                onChange={handleInputChange}
+                className="input-field mt-1"
+                placeholder="Enter your password"
+              />
+            </div>
+            
+            {!isLogin && (
+              <>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                    Phone number
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="input-field mt-1"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="card" className="block text-sm font-medium text-gray-700">
+                    Payment card number
+                  </label>
+                  <input
+                    id="card"
+                    name="card"
+                    type="text"
+                    required
+                    value={formData.card}
+                    onChange={handleInputChange}
+                    className="input-field mt-1"
+                    placeholder="Enter your card number"
+                  />
+                </div>
+              </>
+            )}
           </div>
-        )}
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-        >
-          {isSignup ? "Sign Up" : "Login"}
-        </button>
-      </form>
-      <div className="mt-4 text-center">
-        <button
-          className="text-blue-600 underline"
-          onClick={() => setIsSignup((s) => !s)}
-        >
-          {isSignup
-            ? "Already have an account? Login"
-            : "Don't have an account? Sign Up"}
-        </button>
+          
+          <div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Processing...' : (isLogin ? 'Sign in' : 'Create account')}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
